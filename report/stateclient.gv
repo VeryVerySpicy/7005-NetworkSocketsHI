@@ -1,0 +1,15 @@
+digraph {
+    	node [shape=circle];
+edge [fontsize=10];
+A [label="Start", shape=doublecircle];
+B [label="Processing Inputs (Command Line and File)", shape=circle];
+C [label="Connected", shape=circle];
+D [label="Waiting", shape=circle];
+E [label="Processing Contents", shape=circle];
+F [label="Exit", shape=doublecircle];
+A -> B [label="Read command line and file."];
+B -> C [label="Establish connection."];
+C -> D [label="Send file contents."];
+D -> E [label="Receive encrypted contents."];
+E -> F [label="Print encrypted contents."];
+}
