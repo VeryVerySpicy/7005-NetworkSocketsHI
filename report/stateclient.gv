@@ -1,15 +1,16 @@
-digraph {
-    	node [shape=circle];
-edge [fontsize=10];
-A [label="Start", shape=doublecircle];
-B [label="Processing Inputs (Command Line and File)", shape=circle];
-C [label="Connected", shape=circle];
-D [label="Waiting", shape=circle];
-E [label="Processing Contents", shape=circle];
-F [label="Exit", shape=doublecircle];
-A -> B [label="Read command line and file."];
-B -> C [label="Establish connection."];
-C -> D [label="Send file contents."];
-D -> E [label="Receive encrypted contents."];
-E -> F [label="Print encrypted contents."];
+digraph finite_state_machine {
+    fontname="Helvetica,Arial,sans-serif"
+    node [fontname="Helvetica,Arial,sans-serif"]
+    edge [fontname="Helvetica,Arial,sans-serif"]
+    rankdir=TB;
+    size="7.5,7.5";
+    ratio="fill";
+    node [shape = doublecircle]; START, EXIT;
+    node [shape = box];
+START -> PARSE_ARGS [label = "parseArgs"];
+PARSE_ARGS -> READING_FILE [label = "readFile"];
+READING_FILE -> DECRYPTING_MSG [label = "decryptMsg"];
+DECRYPTING_MSG -> PRINTING_MSG [label = "printMsg"];
+PRINTING_MSG -> CLEANUP [label = "cleanup"];
+CLEANUP -> EXIT;
 }
